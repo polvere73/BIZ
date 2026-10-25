@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUCA TAXI | Servizio Taxi Rapido, Puntuale e Trasparente</title>
+  <meta name="description" content="Servizio Taxi professionale di Luca: corse urbane, transfer aeroporti, stazioni e viaggi aziendali. Pagamenti con carta e POS a bordo. Chiama o prenota online.">
+  
+  <!-- Tailwind CSS per uno styling moderno e reattivo -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Google: Inter per massima leggibilità -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Icone Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Configurazione Colori Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            taxi: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              200: '#fde68a',
+              300: '#fcd34d',
+              400: '#fbbf24',
+              500: '#f59e0b', // Giallo ambra taxi premium
+              600: '#d97706',
+              700: '#b45309',
+            },
+            brand: {
+              dark: '#0f172a',    // Navy profondo/slate
+              charcoal: '#1e293b',
+              surface: '#090d16',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Rimozione frecce dagli input numerici */
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-taxi-400 selection:text-slate-900 pb-20 md:pb-0">
+
+  <!-- Top Bar Informativa Rapida -->
+  <div class="bg-brand-dark text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="font-medium text-white">Disponibile Ora</span>
+        <span class="text-slate-400">| Licenza Taxi Ufficiale N° 15</span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-400">
+        <span class="flex items-center gap-1.5"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-taxi-400"></i> Sanificato & Climatizzato</span>
+        <span class="hidden md:flex items-center gap-1.5"><i data-lucide="credit-card" class="w-3.5 h-3.5 text-taxi-400"></i> POS sempre a bordo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Principale -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo Brand -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 rounded-xl bg-taxi-500 flex items-center justify-center text-brand-dark font-extrabold shadow-sm group-hover:scale-105 transition-transform">
+          <i data-lucide="car" class="w-7 h-7 text-slate-950"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-2xl font-black tracking-tight text-slate-950">LUCA</span>
+            <span class="bg-taxi-500 text-slate-950 text-xs px-2 py-0.5 rounded font-black tracking-widest uppercase">TAXI</span>
+          </div>
+          <p class="text-xs text-slate-500 font-medium tracking-wide">Puntualità & Comfort Garantiti</p>
+        </div>
+      </a>
+
+      <!-- Menu Desktop -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-600">
+        <a href="#vantaggi" class="hover:text-taxi-600 transition-colors">Perché Scegliermi</a>
+        <a href="#tariffe" class="hover:text-taxi-600 transition-colors">Tariffe & Tratte</a>
+        <a href="#galleria" class="hover:text-taxi-600 transition-colors">La Vettura</a>
+        <a href="#preventivo" class="hover:text-taxi-600 transition-colors">Preventivo Rapido</a>
+        <a href="#faq" class="hover:text-taxi-600 transition-colors">FAQ</a>
+      </nav>
+
+      <!-- Pulsante Chiamata Immediata Desktop -->
+      <div class="flex items-center gap-3">
+        <a href="tel:+393355323712" class="hidden sm:inline-flex items-center gap-2.5 bg-taxi-500 hover:bg-taxi-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all active:scale-95 text-sm">
+          <i data-lucide="phone-call" class="w-4 h-4"></i>
+          <span>Chiama Subito</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-b from-slate-900 via-brand-dark to-slate-900 text-white pt-12 pb-20 md:py-24 overflow-hidden">
+    <!-- Effetto sfondo gradiente -->
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.15),transparent_50%)] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Testo Hero -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 border border-slate-700/80 text-taxi-400 text-xs sm:text-sm font-semibold tracking-wide">
+            <i data-lucide="map-pin" class="w-4 h-4 text-taxi-400"></i>
+            <span>Attivo in tutta la città, aeroporti & provincia</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+            Il tuo taxi di fiducia: <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-taxi-400 to-amber-300">rapido, puntuale</span> e senza sorprese.
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal">
+            Hai un aereo da non perdere, un appuntamento di lavoro o bisogno di una corsa immediata? Salta a bordo di una vettura spaziosa, climatizzata e guidata da un professionista con anni di esperienza.
+          </p>
+
+          <!-- Badge di Fiducia -->
+          <div class="pt-2 grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
+            <div class="bg-slate-800/60 border border-slate-700/60 p-3 rounded-xl flex items-center gap-3">
+              <i data-lucide="credit-card" class="w-5 h-5 text-taxi-400 shrink-0"></i>
+              <span class="text-xs font-medium text-slate-200">POS & Carte a Bordo</span>
+            </div>
+            <div class="bg-slate-800/60 border border-slate-700/60 p-3 rounded-xl flex items-center gap-3">
+              <i data-lucide="plane" class="w-5 h-5 text-taxi-400 shrink-0"></i>
+              <span class="text-xs font-medium text-slate-200">Transfer Aeroporto</span>
+            </div>
+            <div class="bg-slate-800/60 border border-slate-700/60 p-3 rounded-xl flex items-center gap-3">
+              <i data-lucide="receipt" class="w-5 h-5 text-taxi-400 shrink-0"></i>
+              <span class="text-xs font-medium text-slate-200">Fattura Elettronica</span>
+            </div>
+            <div class="bg-slate-800/60 border border-slate-700/60 p-3 rounded-xl flex items-center gap-3">
+              <i data-lucide="clock" class="w-5 h-5 text-taxi-400 shrink-0"></i>
+              <span class="text-xs font-medium text-slate-200">Zero Ritardi</span>
+            </div>
+          </div>
+
+          <!-- Pulsanti Chiamata Rapida e WhatsApp -->
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a href="tel:+393355323712" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-taxi-500 hover:bg-taxi-400 text-slate-950 font-bold px-8 py-4 rounded-xl shadow-lg shadow-taxi-500/20 transition-all transform hover:-translate-y-0.5 text-base">
+              <i data-lucide="phone-outgoing" class="w-5 h-5"></i>
+              <span>Chiama Subito Luca</span>
+            </a>
+            
+            <a href="https://wa.me/393355323712?text=Ciao%20Luca,%20avrei%20bisogno%20di%20un%20taxi%20il%20giorno..." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-7 py-4 rounded-xl shadow-lg shadow-emerald-600/20 transition-all transform hover:-translate-y-0.5 text-base">
+              <i data-lucide="message-circle" class="w-5 h-5"></i>
+              <span>Prenota via WhatsApp</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Box Preventivo Diretto Rapido (Hero Widget) -->
+        <div class="lg:col-span-5">
+          <div id="preventivo" class="bg-white text-slate-900 rounded-2xl p-6 sm:p-8 shadow-2xl border border-slate-100 relative">
+            <div class="flex items-center justify-between mb-5">
+              <div>
+                <span class="text-xs font-bold text-taxi-600 uppercase tracking-wider">Richiesta Veloce</span>
+                <h3 class="text-xl font-extrabold text-slate-900">Preventivo o Corsa</h3>
+              </div>
+              <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Risposta in 5 min
+              </span>
+            </div>
+
+            <!-- Form con reindirizzamento WhatsApp -->
+            <form id="hero-quote-form" onsubmit="handleQuoteSubmit(event)" class="space-y-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5" for="pickup">Punto di Partenza</label>
+                <div class="relative">
+                  <i data-lucide="map-pin" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5"></i>
+                  <input id="pickup" type="text" required placeholder="Es. Hotel Nazionale / Via Roma 10" class="w-full pl-10 pr-3 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-taxi-500 focus:border-taxi-500 outline-none transition-all">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5" for="destination">Destinazione</label>
+                <div class="relative">
+                  <i data-lucide="navigation" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5"></i>
+                  <input id="destination" type="text" required placeholder="Es. Aeroporto / Stazione Centrale" class="w-full pl-10 pr-3 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-taxi-500 focus:border-taxi-500 outline-none transition-all">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5" for="ride-date">Data & Ora</label>
+                  <input id="ride-date" type="text" placeholder="Es. Oggi ore 18:30" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-taxi-500 focus:border-taxi-500 outline-none transition-all">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5" for="passengers">Passeggeri</label>
+                  <select id="passengers" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-taxi-500 focus:border-taxi-500 outline-none transition-all bg-white">
+                    <option value="1-2 Persone">1-2 Persone</option>
+                    <option value="3-4 Persone">3-4 Persone</option>
+                    <option value="Molti Bagagli">Bagagli Grandi</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="w-full mt-2 bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all active:scale-[0.99] text-sm">
+                <i data-lucide="send" class="w-4 h-4 text-taxi-400"></i>
+                <span>Invia Richiesta su WhatsApp</span>
+              </button>
+
+              <p class="text-[11px] text-center text-slate-500 mt-2">
+                Nessun costo anticipato. Conferma immediata della disponibilità da Luca.
+              </p>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SEZIONE FOTO: 3 Spazi Dedicati per le tue Immagini -->
+  <section id="galleria" class="py-16 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-bold text-taxi-600 uppercase tracking-wider">A Bordo del Taxi</span>
+        <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Comfort, Spazio e Sicurezza</h2>
+        <p class="text-slate-600 mt-2 text-sm sm:text-base">
+          Vettura sempre igienizzata, spaziosa e curata nei dettagli per garantirti il miglior tragitto possibile.
+        </p>
+      </div>
+
+      <!-- Griglia delle 3 Immagini -->
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- FOTO 1: Luca e la vettura (Esterni) -->
+        <!-- NOTA PER LUCA: Sostituisci il link nell'attributo src con il percorso del tuo file immagine (es. images/luca-taxi-esterni.jpg) -->
+        <div class="group bg-slate-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-slate-200 flex flex-col">
+          <div class="relative h-64 overflow-hidden bg-slate-200">
+            <img
+              src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+              alt="Luca il Taxista e la vettura esterna"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.src='https://placehold.co/800x600/1e293b/fbbf24?text=Foto+1:+Luca+e+Vettura'">
+            <div class="absolute bottom-3 left-3 bg-brand-dark/80 backdrop-blur-xs text-white text-xs font-semibold px-2.5 py-1 rounded-md">
+              Foto 1 • Vettura Ufficiale
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">La Vettura Ufficiale</h3>
+              <p class="text-sm text-slate-600 mt-1">Sempre lucida, affidabile e munita di tutti i contrassegni e permessi ZTL per arrivare ovunque.</p>
+            </div>
+            <span class="text-xs text-taxi-600 font-semibold mt-3 flex items-center gap-1">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i> Accesso Corsie Preferenziali
+            </span>
+          </div>
+        </div>
+
+        <!-- FOTO 2: Interni e Comfort -->
+        <!-- NOTA PER LUCA: Sostituisci il link nell'attributo src con la foto dei tuoi interni (es. images/interni-comfort.jpg) -->
+        <div class="group bg-slate-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-slate-200 flex flex-col">
+          <div class="relative h-64 overflow-hidden bg-slate-200">
+            <img 
+              src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" 
+              alt="Interni confortevoli e sanificati" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.src='https://placehold.co/800x600/1e293b/fbbf24?text=Foto+2:+Interni+Comfort'"
+            >
+            <div class="absolute bottom-3 left-3 bg-brand-dark/80 backdrop-blur-xs text-white text-xs font-semibold px-2.5 py-1 rounded-md">
+              Foto 2 • Interni & Spazio
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">Massimo Comfort a Bordo</h3>
+              <p class="text-sm text-slate-600 mt-1">Sedili accoglienti, clima bi-zona, prese di ricarica per iPhone e Android, e silenziosità di marcia.</p>
+            </div>
+            <span class="text-xs text-taxi-600 font-semibold mt-3 flex items-center gap-1">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i> Sanificazione Regolare
+            </span>
+          </div>
+        </div>
+
+        <!-- FOTO 3: Servizio Transfer Aeroporto e Bagagliaio -->
+        <!-- NOTA PER LUCA: Sostituisci il link nell'attributo src con la foto del bagagliaio o transfer (es. images/bagagli-transfer.jpg) -->
+        <div class="group bg-slate-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-slate-200 flex flex-col">
+          <div class="relative h-64 overflow-hidden bg-slate-200">
+            <img 
+              src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80" 
+              alt="Transfer Aeroporti e Stazioni con ampio bagagliaio" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.src='https://placehold.co/800x600/1e293b/fbbf24?text=Foto+3:+Bagagliaio+Capiente'"
+            >
+            <div class="absolute bottom-3 left-3 bg-brand-dark/80 backdrop-blur-xs text-white text-xs font-semibold px-2.5 py-1 rounded-md">
+              Foto 3 • Transfer & Bagagli
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">Bagagliaio Capiente (XXL)</h3>
+              <p class="text-sm text-slate-600 mt-1">Spazio per valigie grandi, passeggini, sacche da golf o attrezzature sportive senza sacrificare lo spazio passeggeri.</p>
+            </div>
+            <span class="text-xs text-taxi-600 font-semibold mt-3 flex items-center gap-1">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i> Aiuto nel Carico/Scarico
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Istruzione visibile per l'utente in fase di editing -->
+      <div class="mt-8 bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs text-amber-900 flex items-start gap-3">
+        <i data-lucide="info" class="w-5 h-5 text-amber-600 shrink-0 mt-0.5"></i>
+        <div>
+          <strong class="font-bold">Come sostituire le foto:</strong> Apri questo file HTML con un editor di testo, cerca <code class="bg-amber-100 px-1 py-0.5 rounded font-mono">FOTO 1</code>, <code class="bg-amber-100 px-1 py-0.5 rounded font-mono">FOTO 2</code> o <code class="bg-amber-100 px-1 py-0.5 rounded font-mono">FOTO 3</code> e cambia il link nel tag <code class="bg-amber-100 px-1 py-0.5 rounded font-mono">src="..."</code> con il nome dei tuoi file immagine.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Vantaggi & Fattori di Scelta del Taxi -->
+  <section id="vantaggi" class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-bold text-taxi-600 uppercase tracking-wider">Cosa fa la differenza</span>
+        <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Tutto Ciò che Cerchi in un Taxi</h2>
+        <p class="text-slate-600 mt-2 text-sm sm:text-base">
+          I criteri più importanti per viaggiare tranquilli, sia per una corsa d'emergenza che per una trasferta programmata.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card 1: Pagamenti -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-4">
+            <i data-lucide="wallet" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Tutti i Pagamenti Accettati</h3>
+          <p class="text-sm text-slate-600 mb-4">
+            Nessun problema con i contanti: a bordo puoi pagare sempre con qualsiasi metodo elettronico moderno.
+          </p>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
+            <span class="bg-slate-100 px-2.5 py-1 rounded-md">Bancomat</span>
+            <span class="bg-slate-100 px-2.5 py-1 rounded-md">Visa / Mastercard</span>
+            <span class="bg-slate-100 px-2.5 py-1 rounded-md">Apple Pay</span>
+            <span class="bg-slate-100 px-2.5 py-1 rounded-md">Google Pay</span>
+            <span class="bg-slate-100 px-2.5 py-1 rounded-md">Satispay</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Puntualità & Voli -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center mb-4">
+            <i data-lucide="radar" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Tracciamento Voli in Tempo Reale</h3>
+          <p class="text-sm text-slate-600 mb-4">
+            Se prenoti il transfer di rientro dall'aeroporto, monitoro lo stato del tuo volo: anche in caso di ritardo, ti aspetterò al terminal senza costi aggiuntivi di attesa.
+          </p>
+          <span class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700">
+            <i data-lucide="check-circle" class="w-4 h-4"></i> Zero stress da ritardo aereo
+          </span>
+        </div>
+
+        <!-- Card 3: Corsie preferenziali ZTL -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-4">
+            <i data-lucide="zap" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Corsie Preferenziali & ZTL</h3>
+          <p class="text-sm text-slate-600 mb-4">
+            In quanto taxi ufficiale, transito nelle corsie riservate e nei centri storici a traffico limitato. Eviti il traffico e arrivi prima rispetto a qualsiasi auto privata.
+          </p>
+          <span class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700">
+            <i data-lucide="check-circle" class="w-4 h-4"></i> Accesso pedonale e stazioni
+          </span>
+        </div>
+
+        <!-- Card 4: Famiglie e Bambini -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center mb-4">
+            <i data-lucide="baby" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Seggiolino Bimbi su Richiesta</h3>
+          <p class="text-sm text-slate-600 mb-4">
+            Viaggi con la famiglia o un neonato? Segnalalo in fase di prenotazione e troverai il seggiolino o alzatina omologata già installata a norma di legge.
+          </p>
+          <span class="inline-flex items-center gap-1.5 text-xs font-bold text-purple-700">
+            <i data-lucide="check-circle" class="w-4 h-4"></i> Sicurezza per i più piccoli
+          </span>
+        </div>
+
+        <!-- Card 5: Pet Friendly -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center mb-4">
+            <i data-lucide="paw-print" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Amici a 4 Zampe Benvenuti</h3>
+          <p class="text-sm text-slate-600 mb-4">
+            Cani di piccola e media taglia o gatti in trasportino viaggiano volentieri a bordo. È sufficiente avvisare in anticipo per predisporre la copertura protettiva.
+          </p>
+          <span class="inline-flex items-center gap-1.5 text-xs font-bold text-rose-700">
+            <i data-lucide="check-circle" class="w-4 h-4"></i> 100% Pet Friendly
+          </span>
+        </div>
+
+        <!-- Card 6: Fattura Elettronica Aziendale -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center mb-4">
+            <i data-lucide="file-spreadsheet" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Fatturazione per Aziende & P.IVA</h3>
+          <p class="text-sm text-slate-600 mb-4">
+            Ricevuta fiscale cartacea istantanea o invio diretto di fattura elettronica tramite SDI per detrazioni fiscali e rimborsi spese aziendali.
+          </p>
+          <span class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-800">
+            <i data-lucide="check-circle" class="w-4 h-4"></i> Convenzioni aziendali disponibili
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Sezione Tariffe Chiare e Tratte Principali CANCELLATO-->
+ 
+
+  <!-- Recensioni e Social Proof (Google Rating) -->
+  <section class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row items-center justify-between mb-10 gap-6">
+        <div>
+          <div class="flex items-center gap-2 text-amber-500 mb-1">
+            <div class="flex">
+              <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+              <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+            </div>
+            <span class="text-slate-900 font-extrabold text-lg">4.9 / 5.0</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">La Parola ai Passeggeri</h2>
+          <p class="text-sm text-slate-500">Recensioni reali verificate dai clienti di Luca</p>
+        </div>
+        
+        <div class="bg-white border border-slate-200 px-5 py-3 rounded-2xl flex items-center gap-3 shadow-xs">
+          <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 font-bold">
+            G
+          </div>
+          <div class="text-xs">
+            <p class="font-bold text-slate-800">Recensito su Google Maps</p>
+            <p class="text-slate-500">Più di 60 opinioni positive a 5 stelle</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs">
+          <div class="flex items-center gap-1 text-amber-400 mb-3">
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+          </div>
+          <p class="text-sm text-slate-700 italic mb-4">
+            "Avevo il volo alle 6 del mattino. Luca è arrivato con 5 minuti di anticipo, gentilissimo, ha caricato tutte le valigie e la macchina profumava di pulito. Pagato comodamente con Apple Pay."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-700 text-xs">
+              MC
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-slate-900">Marco C.</h4>
+              <p class="text-[11px] text-slate-500">Transfer Aeroporto</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs">
+          <div class="flex items-center gap-1 text-amber-400 mb-3">
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+          </div>
+          <p class="text-sm text-slate-700 italic mb-4">
+            "Taxista di grande professionalità. Guida fluida, niente brusche frenate e vettura molto spaziosa. Utilizzo regolarmente i suoi servizi per i miei ospiti aziendali e fa sempre una gran figura."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-700 text-xs">
+              ER
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-slate-900">Elena R.</h4>
+              <p class="text-[11px] text-slate-500">Cliente Business</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs">
+          <div class="flex items-center gap-1 text-amber-400 mb-3">
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+          </div>
+          <p class="text-sm text-slate-700 italic mb-4">
+            "Ho viaggiato con il mio cane di media taglia senza alcun problema. Molti altri rifiutano gli animali, mentre Luca è stato accogliente e disponibile fin da subito al telefono."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-700 text-xs">
+              GT
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-slate-900">Giulia T.</h4>
+              <p class="text-[11px] text-slate-500">Viaggio Pet Friendly</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Sezione FAQ (Fisarmonica interattiva) -->
+  <section id="faq" class="py-16 bg-white border-t border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-12">
+        <span class="text-xs font-bold text-taxi-600 uppercase tracking-wider">Risposte Chiare</span>
+        <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Domande Frequenti</h2>
+        <p class="text-slate-600 mt-2 text-sm">
+          Tutto quello che è utile sapere prima di salire a bordo o prenotare.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        
+        <!-- FAQ 1 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden">
+          <button onclick="toggleFaq(1)" class="w-full text-left p-5 bg-slate-50 hover:bg-slate-100 flex justify-between items-center transition-colors">
+            <span class="font-bold text-slate-900 text-sm sm:text-base">Posso pagare obbligatoriamente con la carta o il bancomat?</span>
+            <i id="faq-icon-1" data-lucide="chevron-down" class="w-5 h-5 text-slate-500 transition-transform"></i>
+          </button>
+          <div id="faq-content-1" class="hidden p-5 text-sm text-slate-600 bg-white border-t border-slate-200 leading-relaxed">
+            Certamente sì. Il terminale POS è sempre attivo e funzionante a bordo per qualsiasi importo, anche per le corse più brevi. Accetto Bancomat, tutte le carte di credito (Visa, Mastercard, Maestro, Amex), Apple Pay, Google Pay e Satispay.
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden">
+          <button onclick="toggleFaq(2)" class="w-full text-left p-5 bg-slate-50 hover:bg-slate-100 flex justify-between items-center transition-colors">
+            <span class="font-bold text-slate-900 text-sm sm:text-base">Quanto tempo prima devo prenotare per un transfer in aeroporto?</span>
+            <i id="faq-icon-2" data-lucide="chevron-down" class="w-5 h-5 text-slate-500 transition-transform"></i>
+          </button>
+          <div id="faq-content-2" class="hidden p-5 text-sm text-slate-600 bg-white border-t border-slate-200 leading-relaxed">
+            Per i voli del mattino presto o nei fine settimana è consigliabile prenotare con almeno 12-24 ore di anticipo. Se tuttavia hai bisogno di un taxi all'ultimo momento, chiamami direttamente: se mi trovo nelle vicinanze posso raggiungerti in 10-15 minuti.
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden">
+          <button onclick="toggleFaq(3)" class="w-full text-left p-5 bg-slate-50 hover:bg-slate-100 flex justify-between items-center transition-colors">
+            <span class="font-bold text-slate-900 text-sm sm:text-base">E se il mio volo o treno è in ritardo?</span>
+            <i id="faq-icon-3" data-lucide="chevron-down" class="w-5 h-5 text-slate-500 transition-transform"></i>
+          </button>
+          <div id="faq-content-3" class="hidden p-5 text-sm text-slate-600 bg-white border-t border-slate-200 leading-relaxed">
+            Al momento della prenotazione ti chiederò il numero di volo o treno. Monitoro l'orario effettivo di atterraggio tramite app radar, perciò adatterò l'orario di presa in carico al tuo effettivo arrivo senza costi di attesa ingiustificati.
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden">
+          <button onclick="toggleFaq(4)" class="w-full text-left p-5 bg-slate-50 hover:bg-slate-100 flex justify-between items-center transition-colors">
+            <span class="font-bold text-slate-900 text-sm sm:text-base">Rilasci la ricevuta o fattura per la mia azienda?</span>
+            <i id="faq-icon-4" data-lucide="chevron-down" class="w-5 h-5 text-slate-500 transition-transform"></i>
+          </button>
+          <div id="faq-content-4" class="hidden p-5 text-sm text-slate-600 bg-white border-t border-slate-200 leading-relaxed">
+            Sì, rilascio ricevuta immediata cartacea con valore fiscale. Su richiesta emetto fattura elettronica intestata a te o alla tua società, inviata direttamente al tuo Codice Destinatario SDI o PEC.
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden">
+          <button onclick="toggleFaq(5)" class="w-full text-left p-5 bg-slate-50 hover:bg-slate-100 flex justify-between items-center transition-colors">
+            <span class="font-bold text-slate-900 text-sm sm:text-base">Quali sono le tariffe per il servizio notturno?</span>
+            <i id="faq-icon-5" data-lucide="chevron-down" class="w-5 h-5 text-slate-500 transition-transform"></i>
+          </button>
+          <div id="faq-content-5" class="hidden p-5 text-sm text-slate-600 bg-white border-t border-slate-200 leading-relaxed">
+            Nelle fasce notturne (generalmente dalle 22:00 alle 06:00) si applica il supplemento notturno ufficiale previsto dal tariffario comunale regolamentare, indicato chiaramente e automaticamente sul tassametro.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer & Contatti Diretti -->
+  <footer class="bg-brand-dark text-slate-300 pt-16 pb-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
+        
+        <!-- Info Luca Taxi -->
+        <div class="space-y-4 md:col-span-2">
+          <div class="flex items-center gap-2">
+            <div class="w-10 h-10 rounded-xl bg-taxi-500 flex items-center justify-center text-brand-dark font-extrabold">
+              <i data-lucide="car" class="w-6 h-6 text-slate-950"></i>
+            </div>
+            <span class="text-xl font-black text-white tracking-tight">LUCA TAXI</span>
+          </div>
+          <p class="text-sm text-slate-400 max-w-sm">
+            Servizio Taxi Professionale. Spostamenti urbani, trasferimenti aeroportuali, collegamenti con le stazioni e viaggi a medio/lungo raggio con il massimo comfort.
+          </p>
+          <div class="text-xs text-slate-500 space-y-1">
+            <p><strong>Licenza Taxi Ufficiale Comune N° 15</strong></p>
+            <p>P.IVA: 01234567890 • Polizza Assicurativa Massimale Top</p>
+          </div>
+        </div>
+
+        <!-- Contatti Rapidi -->
+        <div>
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Contatti Diretti</h4>
+          <ul class="space-y-3 text-sm">
+            <li>
+              <a href="tel:+393355323712" class="hover:text-taxi-400 transition-colors flex items-center gap-2.5">
+                <i data-lucide="phone" class="w-4 h-4 text-taxi-500 shrink-0"></i>
+                <span>+39 333 1234567</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://wa.me/393355323712" class="hover:text-taxi-400 transition-colors flex items-center gap-2.5">
+                <i data-lucide="message-square" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                <span>WhatsApp Diretto</span>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:info@lucataxi.it" class="hover:text-taxi-400 transition-colors flex items-center gap-2.5">
+                <i data-lucide="mail" class="w-4 h-4 text-taxi-500 shrink-0"></i>
+                <span>info@lucataxi.it</span>
+              </a>
+            </li>
+            <li class="flex items-center gap-2.5 text-slate-400">
+              <i data-lucide="map-pin" class="w-4 h-4 text-taxi-500 shrink-0"></i>
+              <span>Città di riferimento & Provincia</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Orari & Servizi -->
+        <div>
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Orari di Servizio</h4>
+          <ul class="space-y-2 text-sm text-slate-400">
+            <li class="flex justify-between">
+              <span>Lunedì - Venerdì:</span>
+              <span class="text-white font-medium">H24</span>
+            </li>
+            <li class="flex justify-between">
+              <span>Sabato e Domenica:</span>
+              <span class="text-white font-medium">H24</span>
+            </li>
+            <li class="flex justify-between">
+              <span>Festivi:</span>
+              <span class="text-white font-medium">Disponibile</span>
+            </li>
+            <li class="pt-2 text-xs text-taxi-400 font-medium">
+              *Per le ore notturne si consiglia la prenotazione anticipata
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+        <p>&copy; 2026 Luca Taxi. Tutti i diritti riservati.</p>
+        <div class="flex gap-4">
+          <a href="#" class="hover:underline">Privacy Policy</a>
+          <a href="#" class="hover:underline">Cookie Policy</a>
+          <a href="#" class="hover:underline">Tariffe Comunali</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- BARRA FISSA MOBILE (Sticky CTA sempre visibile su smartphone) -->
+  <div class="fixed bottom-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur-md border-t border-slate-800 p-2.5 px-4 md:hidden flex gap-3 shadow-2xl">
+    <!-- Tasto Chiama Ora -->
+    <a href="tel:+393355323712" class="flex-1 bg-taxi-500 hover:bg-taxi-400 text-slate-950 font-extrabold py-3 px-3 rounded-xl flex items-center justify-center gap-2 text-sm shadow-md active:scale-95 transition-transform">
+      <i data-lucide="phone-call" class="w-4 h-4"></i>
+      <span>Chiama Ora</span>
+    </a>
+    <!-- Tasto WhatsApp Rapido -->
+    <a href="https://wa.me/393355323712?text=Ciao%20Luca,%20ho%20bisogno%20di%20un%20taxi..." class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-3 rounded-xl flex items-center justify-center gap-2 text-sm shadow-md active:scale-95 transition-transform">
+      <i data-lucide="message-circle" class="w-4 h-4"></i>
+      <span>WhatsApp</span>
+    </a>
+  </div>
+
+  <!-- Script per Accordion FAQ e Gestione Invio Preventivo -->
+  <script>
+    // Inizializza le icone Lucide
+    lucide.createIcons();
+
+    // Gestione Accordion FAQ
+    function toggleFaq(id) {
+      const content = document.getElementById(`faq-content-${id}`);
+      const icon = document.getElementById(`faq-icon-${id}`);
+      
+      const isHidden = content.classList.contains('hidden');
+      
+      // Chiudi tutti gli altri
+      for (let i = 1; i <= 5; i++) {
+        const otherContent = document.getElementById(`faq-content-${i}`);
+        const otherIcon = document.getElementById(`faq-icon-${i}`);
+        if (otherContent) otherContent.classList.add('hidden');
+        if (otherIcon) otherIcon.classList.remove('rotate-180');
+      }
+
+      if (isHidden) {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      }
+    }
+
+    // Gestione Form Preventivo -> Invio Diretto a WhatsApp
+    function handleQuoteSubmit(event) {
+      event.preventDefault();
+      
+      const pickup = document.getElementById('pickup').value;
+      const destination = document.getElementById('destination').value;
+      const rideDate = document.getElementById('ride-date').value || 'Prima possibile';
+      const passengers = document.getElementById('passengers').value;
+
+      // Inserisci qui il numero WhatsApp di Luca (senza il + iniziale)
+      const numeroTelefonoLuca = "393355323712";
+
+      const testoMessaggio = `Ciao Luca! Vorrei un preventivo / disponibilità per un taxi:%0A` +
+        `📍 *Partenza:* ${encodeURIComponent(pickup)}%0A` +
+        `🏁 *Destinazione:* ${encodeURIComponent(destination)}%0A` +
+        `⏰ *Quando:* ${encodeURIComponent(rideDate)}%0A` +
+        `👥 *Passeggeri/Note:* ${encodeURIComponent(passengers)}`;
+
+      // Reindirizzamento a WhatsApp Web o App
+      const urlWhatsapp = `https://wa.me/${numeroTelefonoLuca}?text=${testoMessaggio}`;
+      window.open(urlWhatsapp, '_blank');
+    }
+  </script>
+
+</body>
+</html>
